@@ -354,6 +354,16 @@ body.noscroll .qv-back{display:none}
 @media (max-width:640px){.tx{font-size:16px}.tx table{font-size:13px}.tx td{padding:4px 6px}}
 .tx .nw{white-space:nowrap}
 
+.mod .ico svg{width:44px!important;height:44px!important}
+.mod .ico svg .a1f{fill:var(--cy)!important;stroke:none}
+.mod .ico svg .a2f{fill:rgba(255,255,255,.14)!important}
+.mod .ico svg .a3f{fill:var(--cp,#f2a3b8)!important}
+.mod .ico svg .a1s{stroke:var(--cy)!important}
+.mod .ico svg .a2s{stroke:rgba(255,255,255,.18)!important}
+.mod .ico svg .a3s{stroke:var(--cb,#a8d7f2)!important}
+.mod .ico svg text{fill:currentColor!important}
+.mod[aria-pressed=true] .ico{color:var(--cy)}
+
 /* ===== общий сброс декора прежнего дизайна ===== */
 .torn,.task .ktag,.paper .clip{display:none!important}
 h1,h2,h3{text-transform:none;letter-spacing:-.01em}
@@ -623,13 +633,20 @@ const TV={shiny:[8,16,23,31],kvartiry:[1,9,17,24,32],uchastok:[2,10,18,25,33],bu
 THEMES.forEach(t=>t.v=TV[t.id]);
 const WN="#951b3d",NV="#2d3b57";
 const ICON={
- shiny:c=>`<svg viewBox="0 0 30 30"><circle cx="15" cy="15" r="13" fill="none" stroke="${c}" stroke-width="2.4"/><circle cx="15" cy="15" r="6" fill="none" stroke="${c}" stroke-width="2"/><circle cx="15" cy="15" r="1.8" fill="${c}"/></svg>`,
- kvartiry:c=>`<svg viewBox="0 0 30 30"><rect x="3" y="4" width="24" height="22" fill="none" stroke="${c}" stroke-width="2.2"/><path d="M3 14h10v12M13 4v5M18 14h9" stroke="${c}" stroke-width="2.2" fill="none"/></svg>`,
- uchastok:c=>`<svg viewBox="0 0 30 30"><path d="M4 26V13l8-6 8 6v13z" fill="none" stroke="${c}" stroke-width="2.2" stroke-linejoin="round"/><circle cx="24" cy="12" r="4" fill="none" stroke="${c}" stroke-width="2"/><path d="M24 16v10M2 26h26" stroke="${c}" stroke-width="2"/></svg>`,
- bumaga:c=>`<svg viewBox="0 0 30 30"><path d="M7 3h11l5 5v19H7z" fill="none" stroke="${c}" stroke-width="2.2" stroke-linejoin="round"/><path d="M18 3v5h5" fill="none" stroke="${c}" stroke-width="2"/></svg>`,
- dorogi:c=>`<svg viewBox="0 0 30 30"><path d="M8 28C8 18 22 18 22 10S14 2 14 2" fill="none" stroke="${c}" stroke-width="2.4"/><path d="M15 28C15 21 28 20 28 11" fill="none" stroke="${c}" stroke-width="1.6" stroke-dasharray="3 3"/></svg>`,
- tarify:c=>`<svg viewBox="0 0 30 30"><rect x="8" y="2" width="14" height="26" rx="3" fill="none" stroke="${c}" stroke-width="2.2"/><path d="M12 20v-3M15 20v-6M18 20v-9" stroke="${c}" stroke-width="2"/></svg>`,
- pechi:c=>`<svg viewBox="0 0 30 30"><rect x="4" y="10" width="22" height="18" rx="2" fill="none" stroke="${c}" stroke-width="2.2"/><rect x="9" y="16" width="12" height="7" fill="none" stroke="${c}" stroke-width="2"/><path d="M19 10V3h4v7" fill="none" stroke="${c}" stroke-width="2"/></svg>`
+ /* шина: протектор, диск, спицы */
+ shiny:c=>`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="20"/><circle cx="24" cy="24" r="11" class="a2f"/><circle cx="24" cy="24" r="3" class="a1f"/>${[0,1,2,3,4,5,6,7,8,9,10,11].map(k=>{const a=k*Math.PI/6;return `<path d="M${(24+16*Math.cos(a)).toFixed(1)} ${(24+16*Math.sin(a)).toFixed(1)}L${(24+20*Math.cos(a+.18)).toFixed(1)} ${(24+20*Math.sin(a+.18)).toFixed(1)}"/>`}).join("")}<path d="M24 13v8M24 27v8M13 24h8M27 24h8" class="a1s" stroke-width="1.6"/></svg>`,
+ /* квартира: план с комнатами, дверь-дуга, окно */
+ kvartiry:c=>`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="38" height="34"/><path d="M5 23h15v18M20 7v8M28 23h15M28 23v6"/><path d="M20 15a6 6 0 0 1 6 6" class="a1s" stroke-dasharray="2 2.5"/><path d="M28 7h10" class="a3s" stroke-width="3.2"/><rect x="31" y="28" width="9" height="10" class="a2f" stroke="none"/></svg>`,
+ /* участок: домик, ёлка, забор */
+ uchastok:c=>`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 24l10-8 10 8M9 22v14h14V22"/><rect x="13.5" y="28" width="5" height="8" class="a1f" stroke="none"/><path d="M36 10l-7 11h4l-5 8h16l-5-8h4z" class="a3f"/><path d="M36 29v7"/><path d="M3 41h42M8 36v8M16 36v8M24 36v8M32 36v8M40 36v8" stroke-width="1.6"/></svg>`,
+ /* бумага: стопка листов А4 с загнутым углом */
+ bumaga:c=>`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9h18l7 7v26H14z" class="a2f"/><path d="M32 9v7h7"/><path d="M9 14v28h22" stroke-width="1.6"/><text x="26.5" y="33" text-anchor="middle" font-family="Neucha,cursive" font-size="11" fill="currentColor" stroke="none">А4</text></svg>`,
+ /* дороги: шоссе с разметкой и указатель */
+ dorogi:c=>`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 44C10 30 26 34 28 22S22 8 26 3" stroke-width="7" class="a2s"/><path d="M6 44C10 30 26 34 28 22S22 8 26 3" stroke-width="1.6" stroke-dasharray="3 3.5"/><path d="M38 44V18"/><path d="M33 18h12l2.5 3.5L45 25H33z" class="a1f"/><path d="M33 29h11l-2.5 3.5L44 36H33z" class="a3f"/></svg>`,
+ /* тарифы: смартфон с антенной и графиком */
+ tarify:c=>`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="5" width="22" height="38" rx="4"/><path d="M20 9h6"/><path d="M17 33v-4M21 33v-8M25 33v-12M29 33v-6" class="a1s" stroke-width="3"/><circle cx="23" cy="38" r="1.6" fill="currentColor"/><path d="M38 12a6 6 0 0 1 0 8M41.5 9a11 11 0 0 1 0 14" class="a3s"/></svg>`,
+ /* печи: банная печь с огнём и камнями */
+ pechi:c=>`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M32 4v9"/><rect x="29" y="2" width="6" height="11" class="a2f"/><rect x="8" y="14" width="32" height="28" rx="2"/><path d="M12 14l3-4h18l3 4"/><circle cx="17" cy="11" r="2" class="a3f" stroke="none"/><circle cx="23" cy="10" r="2" class="a2f" stroke="none"/><circle cx="29" cy="11" r="2" class="a3f" stroke="none"/><rect x="14" y="24" width="20" height="13" rx="1.5"/><path d="M24 35c-4 0-5.5-3-3.5-6.5.8 1.6 2 1.6 2 0 0-2 2-3.5 3-4.5 0 3 3.5 4 2.5 7.5-.6 2.2-2 3.5-4 3.5z" class="a1f" stroke="none"/><path d="M8 42h32" stroke-width="2.6"/></svg>`
 };
 
 /* рваные края и пружина */
