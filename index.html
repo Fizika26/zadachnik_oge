@@ -510,6 +510,17 @@ body.drawing .drawbtn{background:var(--cy);color:var(--board)}
 .logo .lw{display:inline-flex;align-items:baseline;gap:6px}
 .logo .lw small{font-size:.58em;color:var(--cy)}
 @media (max-width:640px){.send-open{white-space:nowrap;padding:7px 11px!important;font-size:12px!important}.logo svg{width:32px;height:auto}.logo{gap:7px}.brand{font-size:22px!important}}
+/* пенал прижат к самому низу экрана */
+.cbox{left:0!important;right:0!important;bottom:0!important;transform:none!important;max-width:none!important;width:100%;
+  border-radius:0!important;justify-content:center;
+  padding:7px max(12px,env(safe-area-inset-right,0px)) calc(7px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px))!important;
+  box-shadow:0 -6px 18px rgba(0,0,0,.35),inset 0 2px 0 rgba(255,255,255,.18)!important}
+body{padding-bottom:calc(70px + env(safe-area-inset-bottom,0px))}
+.qv-btn{bottom:calc(74px + env(safe-area-inset-bottom,0px))}
+.qv-back{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+.qv{padding-bottom:calc(66px + env(safe-area-inset-bottom,0px))}
+.solve.full{padding-bottom:calc(70px + env(safe-area-inset-bottom,0px))}
+@media (max-width:640px){.cbox{justify-content:flex-start}.qv-btn{bottom:calc(68px + env(safe-area-inset-bottom,0px))}}
 </style>
 
 <header class="top">
